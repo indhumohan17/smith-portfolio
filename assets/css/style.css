@@ -369,7 +369,6 @@ body::-webkit-scrollbar-thumb {
 
 
 
-
 /*-----------------------------------*\
   #HERO
 \*-----------------------------------*/
@@ -477,19 +476,139 @@ body::-webkit-scrollbar-thumb {
 /*-----------------------------------*\
   #TIMELINE
 \*-----------------------------------*/
-
-.timeline-item {
-  padding-block: 20px;
-  font-size: var(--fs-18);
-  display: grid;
-  gap: 15px;
+/* Section Container */
+.experience-section {
+    max-width: 1000px;
+    width: 100%;
+    margin: 0 auto;
 }
 
-.timeline-item:not(:last-child) { border-block-end: 1px solid var(--black_10); }
+/* Header Styling */
+.header-container {
+    text-align: center;
+    margin-bottom: 40px;
+}
 
-.timeline-item .item-period { font: unset; }
+.badge {
+   
+    padding: 6px 16px;
+    font-size: 3rem;
+    font-weight: 700;
+    color: black;
+    margin-right:100rem ;
+    margin-top: 3rem;
+    display: flex;
+    margin-bottom: 15px;
+}
 
-.timeline-item .item-title { color: var(--black); }
+.subtitle {
+    color: #4B5563;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+/* Card Styling */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px 9px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+    padding: 32px;
+    margin-bottom: 24px;
+    display: flex;
+    flex-direction: row; /* Horizontal layout by default */
+    align-items: flex-start;
+    gap: 30px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Left Column: Logo */
+.card-left {
+    flex: 0 0 150px; /* Fixed width for logo area */
+}
+
+.company-logo {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Center Column: Content */
+.card-center {
+    flex: 1; /* Takes up remaining space */
+}
+
+.job-title {
+    font-size: 20px;
+    margin-left: 11rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 16px;
+}
+
+.job-details {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #4B5563;
+    line-height: 1.6;
+    margin-left: 9rem;
+    font-size: 16px;
+}
+
+.job-details li {
+    margin-bottom: 8px;
+}
+
+/* Right Column: Date */
+.card-right {
+    flex: 0 0 160px; /* Fixed width for date area */
+    text-align: right;
+}
+
+.date {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap; /* Prevents date from breaking lines */
+}
+
+/* --- Responsive Design (Mobile) --- */
+@media (max-width: 768px) {
+    .card {
+        flex-direction: column; /* Stack items vertically */
+        padding: 24px;
+    }
+
+    .card-left, .card-center, .card-right {
+        flex: auto;
+        width: 100%;
+        text-align: left; /* Align everything left on mobile */
+    }
+
+    .card-left {
+        margin-bottom: 15px;
+    }
+
+    .company-logo {
+        max-width: 120px; /* Smaller logo on mobile */
+    }
+
+    .card-right {
+        order: -1; /* Move date to top (optional) or remove to keep at bottom */
+        margin-bottom: 10px;
+        text-align: left;
+    }
+    
+    /* Alternatively, if you want the date below the title on mobile: */
+    .card-right {
+        order: 0;
+        margin-bottom: 20px;
+        color: #6B7280;
+    }
+}
 
 
 
@@ -498,59 +617,80 @@ body::-webkit-scrollbar-thumb {
 /*-----------------------------------*\
   #PRICEING
 \*-----------------------------------*/
-
-.pricing { background-color: var(--cultured); }
-
-.pricing .section-text { margin-block-end: 60px; }
-
-.pricing-list {
-  display: grid;
-  gap: 30px;
+.services-section {
+    background-color: #F3F4F8; /* Light gray/lavender bg from screenshot */
+    padding: 60px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 50vh; /* Optional: ensures it takes up vertical space */
 }
 
-.pricing-card {
-  --color: var(--black);
-  --icon-color: var(--theme-color);
-
-  background-color: var(--white);
-  border-radius: var(--radius-10);
-  box-shadow: var(--shadow);
-  line-height: 1.2;
-  padding: 30px;
-  transition: var(--transition);
+/* Container to hold cards */
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Space between cards */
+    max-width: 1200px;
+    width: 100%;
+    flex-wrap: wrap; /* Allows stacking on mobile */
 }
 
-.pricing-card ion-icon {
-  color: var(--icon-color);
-  flex-shrink: 0;
-  font-size: 25px;
-  transition: var(--transition);
+/* Card Styling */
+.service-card {
+    background-color: #ffffff;
+    padding: 40px 30px;
+    text-align: center;
+    flex: 1; /* Makes all cards equal width */
+    min-width: 280px; /* Prevents cards from getting too small */
+    border-radius: 2px; /* Slight rounding or keep sharp based on preference */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.02); /* Very subtle shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
 }
 
-.pricing-card .card-title {
-  color: var(--color);
-  font: unset;
-  font-family: var(--ff-poppins);
-  margin-block: 14px 10px;
-  transition: var(--transition);
+.service-card:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.pricing-card .card-price {
-  color: var(--color);
-  font-family: var(--ff-poppins);
-  transition: var(--transition);
+/* Icon Styling */
+.icon-wrapper {
+    margin-bottom: 25px;
+    color: #FFB400; /* Yellow/Gold color from screenshot */
 }
 
-.pricing-card:is(:hover, :focus-within) {
-  background-color: var(--theme-color);
-  --color: var(--white);
-  --icon-color: var(--white);
+.icon-wrapper svg {
+    width: 50px;
+    height: 50px;
 }
 
+/* Text Styling */
+.service-card h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 12px;
+}
 
+.service-card p {
+    font-size: 14px;
+    color: #888888; /* Light gray text */
+    line-height: 1.5;
+}
 
+/* Responsive Design for Mobile */
+@media (max-width: 768px) {
+    .container {
+        /* flex-direction: column; 
+        align-items: center; */
+    }
 
-
+    .service-card {
+        width: 100%; /* Full width on mobile */
+        max-width: 400px; /* Prevent them from getting too wide on tablets */
+    }
+}
 /*-----------------------------------*\
   #NEWS
 \*-----------------------------------*/
@@ -1053,4 +1193,33 @@ textarea.input-field {
 
   .hero-banner { width: 275px; }
 
+}
+
+/* Navbar: show inline on larger screens, keep hamburger for small screens */
+@media (min-width: 1025px) {
+  .navbar {
+    position: static;
+    top: auto;
+    left: auto;
+    width: auto;
+    background: transparent;
+    padding-inline: 0;
+    max-height: none;
+    overflow: visible;
+    visibility: visible;
+  }
+
+  .navbar-list {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    margin-block: 0;
+  }
+
+  .navbar-link {
+    padding: 6px 8px;
+    font-size: 1.6rem;
+  }
+
+  .navbar.active { max-height: none; visibility: visible; }
 }
