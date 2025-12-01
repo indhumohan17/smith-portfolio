@@ -56,53 +56,131 @@ window.addEventListener("scroll", function () {
   }
 });
 
+function createBackgroundIcons() {
+    const container = document.getElementById('backgroundIcons');
+    if (!container) return;
 
-/* ----------------------------------
-   Background icons: spawn & animate
------------------------------------ */
+    // Icon shapes and symbols
+    const iconShapes = [
+        '●', '◆', '▲', '■', '★', '✦', '◉', '◈',
+        '▣', '◐', '◑', '◒', '◓', '◔', '◕',
+        '😂','🤣','❤️','😍','😒','👌','😘','😎',
+        '😜','😋','😛','😝','😜','😝','😎','👍',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
 
-(function () {
-  const ICONS = [
-    'bxl-html5',
-    'bxl-css3',
-    'bxl-javascript',
-    'bxl-react',
-    'bxl-nodejs',
-    'bxs-star'
-  ];
 
-  const container = document.getElementById('bg-icons');
-  if (!container) return;
+         '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '◉', '◈', '◎', '◯', '◌', '◍', '◐',
+       '😊','😂','🤣','❤️','😍','😒','👌','😘',
+       '😁','❤️','🤣','😂','😊','💕','🙌','🎶',
+       '😎','💖','🤗','👻','🤭','🤫','🙈','🙉',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
 
-  function createIcon() {
-    const el = document.createElement('i');
-    const ic = ICONS[Math.floor(Math.random() * ICONS.length)];
-    el.className = `bx ${ic} bg-icon`;
 
-    const size = Math.floor(Math.random() * 46) + 18; // 18 - 64px
-    el.style.fontSize = `${size}px`;
 
-    el.style.left = `${Math.random() * 100}%`;
+        '✶', '✷', '✸', '✹', '✺', '✻', '✼',
+        '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '⚡', '✨',  '✱', '✲', '✳', '✴', '✵',
+         '😊','😂','🤣','❤️','😍','😒','👌','😘',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
 
-    const duration = (Math.random() * 12 + 8).toFixed(2); // 8 - 20s
-    el.style.setProperty('--duration', `${duration}s`);
+         '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '◉', '◈', '◎', '◯', '◌', '◍', '◐',
+        '◮', '◯', '◰', '◱', '◲', '◳', '◴',
+        '😊','😂','🤣','❤️','😍','😒','👌','😘',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
 
-    // subtle opacity for variety
-    el.style.opacity = (0.06 + Math.random() * 0.25).toString();
 
-    container.appendChild(el);
 
-    // remove after animation end to avoid DOM buildup
-    el.addEventListener('animationend', () => el.remove());
-  }
+        '✶', '✷', '✸', '✹', '✺', '✻', '✼',
+        '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '⚡', '✨',  '✱', '✲', '✳', '✴', '✵',
+        '✶', '✷', '✸', '✹', '✺', '✻', '✼',
+         '😊','😂','🤣','❤️','😍','😒','👌','😘',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
+    ];
+    // Design-related icons (using Unicode symbols)
+    const designIcons = [
+        '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '◉', '◈', '◎', '◯', '◌', '◍', '◐',
+        '◮', '◯', '◰', '◱', '◲', '◳', '◴',
+        '⚡', '✨', '✱', '✲', '✳', '✴', '✵',
+          '😊','😂','🤣','❤️','😍','😒','👌','😘',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
 
-  // initial spawn
-  for (let i = 0; i < 10; i++) {
-    setTimeout(createIcon, Math.random() * 1200);
-  }
 
-  // continuous spawn
-  const interval = Math.max(450, 1200 - Math.floor(window.innerWidth / 6));
-  setInterval(createIcon, interval);
-})();
 
+        '✶', '✷', '✸', '✹', '✺', '✻', '✼',
+        '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '⚡', '✨',  '✱', '✲', '✳', '✴', '✵',
+        '✶', '✷', '✸', '✹', '✺', '✻', '✼',
+        '✎', '✏', '✐', '✑', '✒', '✓', '✔',
+        '⚡', '✨', '✱', '✲', '✳', '✴', '✵',
+        '😊','😂','🤣','❤️','😍','😒','👌','😘',
+        '😎','😜','😋','😛','😝','😜','😝','😎',
+        '👍','👍','👍','🙌','🙌','😊','😂','🤣',
+        '❤️','😍','😒','👌','😘','😎','😜','😋',
+
+    ];
+
+    const allIcons = [...iconShapes, ...designIcons];
+    const iconCount = 30; // Number of animated icons
+
+    // Create icons
+    for (let i = 0; i < iconCount; i++) {
+        const icon = document.createElement('div');
+        icon.className = 'bg-icon';
+        
+        // Random icon from the array
+        const randomIcon = allIcons[Math.floor(Math.random() * allIcons.length)];
+        icon.textContent = randomIcon;
+        
+        // Random initial properties
+        const size = Math.random() * 30 + 15; // 15-45px
+        const startX = Math.random() * 100; // Percentage
+        const startY = Math.random() * 100; // Percentage
+        const animationDuration = Math.random() * 20 + 15; // 15-35 seconds
+        const animationDelay = Math.random() * 5; // 0-5 seconds
+        const rotationSpeed = Math.random() * 360 + 180; // 180-540 degrees
+        const opacity = Math.random() * 0.3 + 0.1; // 0.1-0.4 opacity
+        
+        icon.style.left = startX + '%';
+        icon.style.top = startY + '%';
+        icon.style.fontSize = size + 'px';
+        icon.style.opacity = opacity;
+        icon.setAttribute('data-opacity', opacity);
+        icon.style.animationDuration = animationDuration + 's';
+        icon.style.animationDelay = animationDelay + 's';
+        icon.style.color = i % 3 === 0 ? '#ff5100ff' : '#ff3c00ff'; // Theme colors
+        
+        // Random animation type
+        const animationType = Math.floor(Math.random() * 3);
+        switch(animationType) {
+            case 0:
+                icon.classList.add('float-rotate');
+                break;
+            case 1:
+                icon.classList.add('float-diagonal');
+                break;
+            case 2:
+                icon.classList.add('float-circular');
+                break;
+        }
+        
+        container.appendChild(icon);
+    }
+}
+
+createBackgroundIcons();

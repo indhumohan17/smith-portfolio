@@ -229,7 +229,7 @@ object-fit: cover;
 
 .h2 {
   font-size: var(--fs-25);
-  /* line-height: 1.2; */
+  line-height: 1.2;
 }
 
 .h1,
@@ -237,9 +237,9 @@ object-fit: cover;
 
 .h3 { font-size: var(--fs-18); }
 
-.section-title { margin-block-end: 40px; }
+:is(.portfolio, .news) .section-title { margin-block-end: 10px; 
+  margin-right: 10rem;  }
 
-:is(.portfolio, .news) .section-title { margin-block-end: 60px; }
 
 .card {
   position: relative;
@@ -1039,7 +1039,7 @@ textarea.input-field {
 
   .hero {
     --section-padding: 70px;
-    padding-block-start: calc(var(--section-padding) + 60px);
+    padding-block-start: calc(var(--section-padding) + 10px);
     min-height: 100vh;
     display: grid;
     align-items: center;
@@ -1189,7 +1189,8 @@ textarea.input-field {
 
   .scrollbar-item { min-width: calc(33.33% - 26.66px); }
 
-  :is(.portfolio, .news) .section-title { margin-block-end: 80px; }
+  :is(.portfolio, .news) .section-title { margin-block-end: 10px;
+  margin-right: 75rem;  }
 
 
 
@@ -1241,44 +1242,81 @@ textarea.input-field {
 
 /* ----------------------------------
    Background icons (animated)
-   - subtle, decorative icons floating upward
 ----------------------------------- */
 
-#bg-icons {
+#backgroundIcons {
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   overflow: hidden;
-  z-index: 0;
+  z-index: 1;
 }
 
 .bg-icon {
   position: absolute;
-  bottom: -10%;
-  display: inline-block;
-  opacity: 0.15;
-  transform-origin: center;
   will-change: transform, opacity;
-  animation: float-up var(--duration, 12s) linear forwards;
-  pointer-events: none;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
 }
 
-.bg-icon.bxs-star { color: #ffd166; }
-.bg-icon.bxl-html5 { color: #e34f26; }
-.bg-icon.bxl-css3 { color: #1572b6; }
-.bg-icon.bxl-javascript { color: #f0db4f; }
-.bg-icon.bxl-react { color: #61dafb; }
-.bg-icon.bxl-nodejs { color: #3c873a; }
-
-@keyframes float-up {
-  0% {
-    transform: translateY(110vh) rotate(0deg);
+/* Animation Keyframes */
+@keyframes float-rotate {
+  from {
+    transform: translateY(10vh) rotate(0deg);
     opacity: 0;
   }
-  10% { opacity: 0.6; }
-  100% {
-    transform: translateY(-20vh) translateX(40px) rotate(360deg);
-    opacity: 0;
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: var(--data-opacity, 0.3);
   }
 }
+
+@keyframes float-diagonal {
+  from {
+    transform: translate(0, 10vh) rotate(0);
+    opacity: 0;
+  }
+  to {
+    transform: translate(10vw, -110vh) rotate(270deg);
+    opacity: var(--data-opacity, 0.3);
+  }
+}
+
+@keyframes float-circular {
+    0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    25% {
+        transform: translateY(-50vh) translateX(10vw) rotate(90deg);
+    }
+    50% {
+        transform: translateY(-100vh) translateX(0) rotate(180deg);
+        opacity: var(--data-opacity, 0.3);
+    }
+    75% {
+        transform: translateY(-50vh) translateX(-10vw) rotate(270deg);
+    }
+    100% {
+        transform: translateY(0) translateX(0) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.bg-icon.float-rotate {
+  animation-name: float-rotate;
+}
+
+.bg-icon.float-diagonal {
+  animation-name: float-diagonal;
+}
+
+.bg-icon.float-circular {
+  animation-name: float-circular;
+}
+
 
