@@ -55,3 +55,54 @@ window.addEventListener("scroll", function () {
     header.classList.remove("active");
   }
 });
+
+
+/* ----------------------------------
+   Background icons: spawn & animate
+----------------------------------- */
+
+(function () {
+  const ICONS = [
+    'bxl-html5',
+    'bxl-css3',
+    'bxl-javascript',
+    'bxl-react',
+    'bxl-nodejs',
+    'bxs-star'
+  ];
+
+  const container = document.getElementById('bg-icons');
+  if (!container) return;
+
+  function createIcon() {
+    const el = document.createElement('i');
+    const ic = ICONS[Math.floor(Math.random() * ICONS.length)];
+    el.className = `bx ${ic} bg-icon`;
+
+    const size = Math.floor(Math.random() * 46) + 18; // 18 - 64px
+    el.style.fontSize = `${size}px`;
+
+    el.style.left = `${Math.random() * 100}%`;
+
+    const duration = (Math.random() * 12 + 8).toFixed(2); // 8 - 20s
+    el.style.setProperty('--duration', `${duration}s`);
+
+    // subtle opacity for variety
+    el.style.opacity = (0.06 + Math.random() * 0.25).toString();
+
+    container.appendChild(el);
+
+    // remove after animation end to avoid DOM buildup
+    el.addEventListener('animationend', () => el.remove());
+  }
+
+  // initial spawn
+  for (let i = 0; i < 10; i++) {
+    setTimeout(createIcon, Math.random() * 1200);
+  }
+
+  // continuous spawn
+  const interval = Math.max(450, 1200 - Math.floor(window.innerWidth / 6));
+  setInterval(createIcon, interval);
+})();
+

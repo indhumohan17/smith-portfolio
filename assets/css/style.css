@@ -177,9 +177,10 @@ body::-webkit-scrollbar-thumb {
 .section { padding-block: var(--section-padding); }
 
 .img-holder {
-  aspect-ratio: var(--width) / var(--height);
   background-color: var(--light-gray);
   overflow: hidden;
+object-fit: cover;
+  margin-left: 1;
 }
 
 .has-before {
@@ -191,11 +192,17 @@ body::-webkit-scrollbar-thumb {
   position: absolute;
   content: "";
 }
+.images{
+ max-width: 40rem;
+  height: 100%;
+  border-radius: inherit;
+}
 
 .img-cover {
-  width: 100%;
+  max-width: 30rem;
   height: 100%;
-  object-fit: cover;
+  border-radius: inherit;
+
 }
 
 .section-subtitle {
@@ -222,7 +229,7 @@ body::-webkit-scrollbar-thumb {
 
 .h2 {
   font-size: var(--fs-25);
-  line-height: 1.2;
+  /* line-height: 1.2; */
 }
 
 .h1,
@@ -275,18 +282,20 @@ body::-webkit-scrollbar-thumb {
   padding-block-end: 30px;
   margin-block-end: -15px;
   scroll-snap-type: inline mandatory;
+  cursor: pointer;
 }
 
 .scrollbar-item {
   min-width: 100%;
   scroll-snap-align: start;
+ 
 }
 
 .has-scrollbar::-webkit-scrollbar-track { background-color: var(--black_20); }
 
 .has-scrollbar::-webkit-scrollbar-thumb { background-color: var(--black_70); }
 
-.has-scrollbar::-webkit-scrollbar-button { width: calc(25% - 25px); }
+.has-scrollbar::-webkit-scrollbar-button { width: calc(25% - 25px);}
 
 
 
@@ -374,6 +383,13 @@ body::-webkit-scrollbar-thumb {
 \*-----------------------------------*/
 
 .slide-down-btn { display: none; }
+.scrollbar-item a img
+{
+   border-radius: var(--radius-10);
+   
+   height: 30rem;
+   object-fit: cover;
+}
 
 .hero {
   background-color: var(--cultured);
@@ -383,7 +399,7 @@ body::-webkit-scrollbar-thumb {
 .hero-banner {
   margin-block-end: 60px;
   max-height: 500px;
-  border-radius: var(--radius-10);
+    border-radius: var(--radius-10);
   margin-inline: auto;
 }
 
@@ -615,7 +631,7 @@ body::-webkit-scrollbar-thumb {
 
 
 /*-----------------------------------*\
-  #PRICEING
+  #SERVICES
 \*-----------------------------------*/
 .services-section {
     background-color: #F3F4F8; /* Light gray/lavender bg from screenshot */
@@ -1042,7 +1058,6 @@ textarea.input-field {
     margin-inline: auto 80px;
     margin-block-end: 0;
     overflow: visible;
-    transform: rotate(7deg);
   }
 
   .hero-banner .img-cover { border-radius: inherit; }
@@ -1052,7 +1067,6 @@ textarea.input-field {
     left: -95px;
     width: 90%;
     height: 100%;
-    background-color: var(--theme-color);
     z-index: -1;
     transform: rotate(-15deg);
     border-radius: var(--radius-10);
@@ -1223,3 +1237,48 @@ textarea.input-field {
 
   .navbar.active { max-height: none; visibility: visible; }
 }
+
+
+/* ----------------------------------
+   Background icons (animated)
+   - subtle, decorative icons floating upward
+----------------------------------- */
+
+#bg-icons {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bg-icon {
+  position: absolute;
+  bottom: -10%;
+  display: inline-block;
+  opacity: 0.15;
+  transform-origin: center;
+  will-change: transform, opacity;
+  animation: float-up var(--duration, 12s) linear forwards;
+  pointer-events: none;
+}
+
+.bg-icon.bxs-star { color: #ffd166; }
+.bg-icon.bxl-html5 { color: #e34f26; }
+.bg-icon.bxl-css3 { color: #1572b6; }
+.bg-icon.bxl-javascript { color: #f0db4f; }
+.bg-icon.bxl-react { color: #61dafb; }
+.bg-icon.bxl-nodejs { color: #3c873a; }
+
+@keyframes float-up {
+  0% {
+    transform: translateY(110vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 0.6; }
+  100% {
+    transform: translateY(-20vh) translateX(40px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
